@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: outfit_hub_inspiration_app-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: outfit_hub_inspiration_app
+  template:
+    metadata:
+      labels:
+        app: outfit_hub_inspiration_app
+    spec:
+      containers:
+        - name: outfit_hub_inspiration_app
+          image: gayathri3123/outfit_hub_inspiration_repository:outfit_hub_inspirationimage # use your Docker Hub image
+          ports:
+            - containerPort: 5000

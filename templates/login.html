@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Inspiration Hub | Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+    <main class="login-card">
+        <div class="brand-mark">OH</div>
+        <p class="eyebrow">YOUR DAILY STYLE GUIDE</p>
+        <h1>Outfit Inspiration Hub</h1>
+        <p class="muted">Find a look for every occasion.</p>
+
+        <form method="POST" class="login-form">
+            <label for="name">What should we call you?</label>
+            <input id="name" name="name" type="text" placeholder="Enter your name"
+                   maxlength="60" autocomplete="given-name" required autofocus>
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <button class="button button-primary" type="submit">Explore outfits <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="small-note">A little inspiration, one outfit at a time.</p>
+    </main>
+</body>
+</html>

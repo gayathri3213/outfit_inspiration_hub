@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Inspiration Hub | {{ outfit_data.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="wordmark" href="{{ url_for('home') }}"><span class="brand-mark small">OH</span> Outfit Inspiration Hub</a>
+        <span class="user-chip">Style guide for {{ name }}</span>
+    </header>
+
+    <main class="page-shell">
+        <a class="back-link" href="{{ url_for('home') }}"><span aria-hidden="true">←</span> Back to occasions</a>
+
+        <section class="occasion-heading">
+            <p class="eyebrow">THE STYLE EDIT / {{ occasion.replace('-', ' ').upper() }}</p>
+            <h1>{{ outfit_data.title }}</h1>
+            <p>{{ outfit_data.intro }}</p>
+        </section>
+
+        <section class="outfit-grid" aria-label="Outfit suggestions">
+            {% for outfit in outfit_data["items"] %}
+            <article class="outfit-card">
+                <div class="outfit-image-wrap">
+                    <img src="{{ url_for('static', filename='images/' ~ outfit.image) }}"
+                         alt="{{ outfit.name }}"
+                         class="outfit-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder" aria-label="Add your outfit picture">
+                        <span class="placeholder-icon" aria-hidden="true">＋</span>
+                        <span>Add your picture</span>
+                        <small>{{ outfit.image }}</small>
+                    </div>
+                    <span class="look-number">LOOK {{ "%02d" | format(loop.index) }}</span>
+                </div>
+                <div class="outfit-copy">
+                    <h2>{{ outfit.name }}</h2>
+                    <p>{{ outfit.description }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+
+        <div class="bottom-navigation">
+            <a class="button button-outline" href="{{ url_for('home') }}">← Back to main page</a>
+        </div>
+
+        <footer class="site-footer"><span>OUTFIT INSPIRATION HUB</span><span>Wear what feels like you.</span></footer>
+    </main>
+</body>
+</html>
